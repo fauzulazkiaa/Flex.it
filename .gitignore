@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.next/
+.swc/
+.vercel/
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json

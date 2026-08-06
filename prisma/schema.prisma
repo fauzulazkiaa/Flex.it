@@ -1,0 +1,76 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum StatusPendaftaran {
+  BELUM_DAFTAR
+  SUDAH_DAFTAR
+  LOLOS
+  TIDAK_LOLOS
+  SELESAI
+}
+
+model User {
+  id         String     @id // Clerk user ID
+  email      String     @unique
+  name       String?
+  imageUrl   String?
+  activities Activity[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@map("users")
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  color       String     @default("blue")
+  iconName    String     @default("Folder")
+  description String?
+  activities  Activity[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@map("categories")
+}
+
+model Activity {
+  id               String            @id @default(cuid())
+  title            String
+  categoryId       String
+  category         Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  userId           String            // Linked to Clerk User
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status           StatusPendaftaran @default(BELUM_DAFTAR)
+  regDeadline      DateTime          // Tenggat Pendaftaran
+  submitDeadline   DateTime?         // Tenggat Submit Karya
+  announcementDate DateTime?         // Tanggal Pengumuman
+  eventDate        DateTime?         // Tanggal Pelaksanaan
+  organizer        String?           // Penyelenggara
+  details          String            @db.Text
+  infoUrl          String?           // Tautan Informasi Lomba
+  driveUrl         String?           // Tautan Google Drive / Sertifikat
+  submissionUrl    String?           // Tautan submit karya
+  documentsUrl     String?           // Tautan berkas persyaratan
+  year             Int               @default(2026)
+  tags             String[]          @default([])
+  level            String?           // ActivityLevel (Internasional, Nasional, dll)
+  achievement      String?           // Capaian (Juara 1, 2, dll)
+  jenisPrestasi    String?           // Akademik / Non-Akademik
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([categoryId])
+  @@index([userId])
+  @@index([status])
+  @@index([year])
+  @@index([regDeadline])
+  @@map("activities")
+}
