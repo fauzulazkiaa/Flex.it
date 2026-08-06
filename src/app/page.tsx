@@ -7,7 +7,7 @@ import { Activity, Category } from '../types';
 import { Navbar } from '../components/Navbar';
 import { StatCards } from '../components/StatCards';
 import { AnalyticsCharts } from '../components/AnalyticsCharts';
-// Memaksa Vercel untuk membangun ulang tanpa cache
+// Memaksa Vercel untuk membangun ulang setelah env masuk
 import { UpcomingDeadlines } from '../components/UpcomingDeadlines';
 import { ActivityTable } from '../components/ActivityTable';
 import { ActivityFormModal } from '../components/ActivityFormModal';
