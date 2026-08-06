@@ -96,7 +96,7 @@ export const LandingPage: React.FC = () => {
             {/* Sidebar Mock - High Fidelity with Labels */}
             <div className="col-span-3 border-r border-zinc-900 p-4 space-y-6 hidden md:block">
               <div className="flex items-center gap-2 px-2">
-                <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded-md shadow-sm" />
+                <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded-md shadow-sm bg-white" />
                 <span className="text-xs font-bold text-zinc-200">Flex.it</span>
               </div>
               <div className="space-y-1.5">

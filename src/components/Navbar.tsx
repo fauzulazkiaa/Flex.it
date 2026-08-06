@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Logo & Brand Title */}
           <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Flex.it Logo" width={40} height={40} className="w-10 h-10 object-contain rounded-xl shadow-lg border border-zinc-800/60" />
+            <Image src="/logo.png" alt="Flex.it Logo" width={40} height={40} className="w-10 h-10 object-contain rounded-xl shadow-lg border border-zinc-800/60 bg-white" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-extrabold text-zinc-100 text-lg tracking-tight leading-tight">

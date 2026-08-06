@@ -10,7 +10,7 @@ export const GlobalFooter = () => {
         {/* Sisi Kiri (Brand Statement) */}
         <div className="space-y-4 max-w-sm">
           <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded" />
+          <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded bg-white" />
             <span className="font-extrabold text-zinc-200 text-sm tracking-tight">Flex.it</span>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">

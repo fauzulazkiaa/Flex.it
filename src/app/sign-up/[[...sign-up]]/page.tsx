@@ -12,9 +12,8 @@ export default function Page() {
       
       <div className="relative z-10 w-full max-w-[400px] flex flex-col items-center">
         
-        {/* Brand Header */}
         <div className="flex items-center gap-2.5 mb-8">
-          <Image src="/logo.png" alt="Flex.it Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-lg shadow-lg" />
+          <Image src="/logo.png" alt="Flex.it Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-lg shadow-lg bg-white" />
           <span className="font-extrabold text-zinc-100 text-lg tracking-tight">
             Flex.it
           </span>
