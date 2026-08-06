@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { 
   Trophy, 
   Sparkles, 
@@ -95,9 +96,7 @@ export const LandingPage: React.FC = () => {
             {/* Sidebar Mock - High Fidelity with Labels */}
             <div className="col-span-3 border-r border-zinc-900 p-4 space-y-6 hidden md:block">
               <div className="flex items-center gap-2 px-2">
-                <div className="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                  <Trophy className="w-3.5 h-3.5" />
-                </div>
+                <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded-md shadow-sm" />
                 <span className="text-xs font-bold text-zinc-200">Flex.it</span>
               </div>
               <div className="space-y-1.5">

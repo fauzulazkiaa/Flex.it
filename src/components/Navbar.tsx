@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import {
   Plus,
   FolderKanban,
@@ -39,9 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Logo & Brand Title */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-600 text-white flex items-center justify-center shadow-lg shadow-indigo-500/20 border border-indigo-400/30">
-              <FolderKanban className="w-5 h-5" />
-            </div>
+            <Image src="/logo.png" alt="Flex.it Logo" width={40} height={40} className="w-10 h-10 object-contain rounded-xl shadow-lg border border-zinc-800/60" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-extrabold text-zinc-100 text-lg tracking-tight leading-tight">
