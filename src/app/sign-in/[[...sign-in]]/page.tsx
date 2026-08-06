@@ -1,5 +1,6 @@
 import { SignIn } from '@clerk/nextjs';
 import { Trophy } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Page() {
   return (
@@ -13,9 +14,7 @@ export default function Page() {
         
         {/* Brand Header */}
         <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-8 h-8 rounded-lg bg-emerald-500 text-black flex items-center justify-center font-bold shadow-lg shadow-emerald-500/20">
-            <Trophy className="w-4 h-4" />
-          </div>
+          <Image src="/logo.png" alt="Flex.it Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-lg shadow-lg" />
           <span className="font-extrabold text-zinc-100 text-lg tracking-tight">
             Flex.it
           </span>

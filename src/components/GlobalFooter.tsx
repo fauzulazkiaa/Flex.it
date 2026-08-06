@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trophy } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const GlobalFooter = () => {
   return (
@@ -9,9 +10,7 @@ export const GlobalFooter = () => {
         {/* Sisi Kiri (Brand Statement) */}
         <div className="space-y-4 max-w-sm">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-emerald-500 text-black flex items-center justify-center font-bold text-xs">
-              <Trophy className="w-3 h-3" />
-            </div>
+          <Image src="/logo.png" alt="Flex.it Logo" width={24} height={24} className="w-6 h-6 object-contain rounded" />
             <span className="font-extrabold text-zinc-200 text-sm tracking-tight">Flex.it</span>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
