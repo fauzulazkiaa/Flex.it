@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { DEFAULT_CATEGORIES } from '@/types';
+import { auth } from '@clerk/nextjs/server';
 
 export async function GET() {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     let categories = await prisma.category.findMany({
+      where: { userId },
       orderBy: { name: 'asc' },
     });
 
@@ -12,15 +19,17 @@ export async function GET() {
     if (categories.length === 0) {
       await prisma.category.createMany({
         data: DEFAULT_CATEGORIES.map(c => ({
-          id: c.id,
+          userId,
           name: c.name,
           color: c.color,
           iconName: c.iconName,
           description: c.description || '',
         })),
+        skipDuplicates: true,
       });
 
       categories = await prisma.category.findMany({
+        where: { userId },
         orderBy: { name: 'asc' },
       });
     }
@@ -34,6 +43,11 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await req.json();
     const { name, color, iconName, description } = body;
 
@@ -43,6 +57,7 @@ export async function POST(req: Request) {
 
     const category = await prisma.category.create({
       data: {
+        userId,
         name,
         color: color || 'blue',
         iconName: iconName || 'Folder',

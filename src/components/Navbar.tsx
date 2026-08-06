@@ -9,6 +9,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { InvitationsPopover } from './InvitationsPopover';
 
 interface NavbarProps {
   activeTab: 'dashboard' | 'table';
@@ -132,7 +133,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
 
-            {/* Manage Settings (Settings Hub) */}
             <button
               id="btn-manage-settings"
               onClick={onOpenSettings}
@@ -142,6 +142,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Settings className="w-3.5 h-3.5 text-emerald-400" />
               <span>Pengaturan</span>
             </button>
+
+            {/* Invitations Popover */}
+            <InvitationsPopover />
 
             {/* Primary CRUD Add Button */}
             <motion.button

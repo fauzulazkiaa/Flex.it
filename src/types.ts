@@ -24,6 +24,7 @@ export interface Category {
 
 export interface Activity {
   id: string;
+  userId?: string;
   title: string;
   categoryId: string;
   status: StatusPendaftaran;

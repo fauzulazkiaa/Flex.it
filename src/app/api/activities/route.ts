@@ -36,8 +36,18 @@ export async function GET() {
     await getOrCreateUser(userId);
 
     const activities = await prisma.activity.findMany({
-      where: { userId },
-      include: { category: true },
+      where: {
+        OR: [
+          { userId },
+          { teamMembers: { some: { userId, status: 'ACCEPTED' } } }
+        ]
+      },
+      include: { 
+        category: true,
+        teamMembers: {
+          include: { user: { select: { name: true, imageUrl: true } } }
+        }
+      },
       orderBy: { regDeadline: 'asc' },
     });
 
