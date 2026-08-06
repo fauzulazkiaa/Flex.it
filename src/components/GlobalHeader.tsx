@@ -1,17 +1,14 @@
 import React from 'react';
-import { Trophy } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const GlobalHeader = () => {
   return (
     <header className="border-b border-zinc-900 bg-[#030303]/60 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-          <Image src="/logo.png" alt="Flex.it Logo" width={32} height={32} className="w-8 h-8 object-contain bg-white rounded-lg" />
-          <span className="font-extrabold text-zinc-100 text-lg tracking-tight">
-            Flex.it
-          </span>
+          <Image src="/logo-app.png" alt="Flex.it Logo" width={32} height={32} className="w-8 h-8 rounded-lg" />
+          <span className="font-bold text-xl tracking-tight text-white">Flex.it</span>
         </Link>
 
         <div className="flex items-center gap-4">

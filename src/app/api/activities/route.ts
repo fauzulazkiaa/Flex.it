@@ -39,9 +39,9 @@ export async function GET() {
     }));
 
     return NextResponse.json(formattedActivities);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching activities:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error', details: error?.message || String(error) }, { status: 500 });
   }
 }
 
