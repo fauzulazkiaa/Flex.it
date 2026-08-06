@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
 
 // Tentukan rute mana saja yang bisa diakses publik (tanpa login)
 const isPublicRoute = createRouteMatcher([
@@ -11,9 +12,20 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  // Lindungi rute yang bukan publik
-  if (!isPublicRoute(request)) {
-    await auth.protect();
+  try {
+    if (!isPublicRoute(request)) {
+      await auth.protect();
+    }
+  } catch (error: any) {
+    // Tangkap error dan tampilkan ke layar agar kita tahu persis apa masalahnya di Vercel
+    console.error("Middleware Error:", error);
+    return new NextResponse(
+      JSON.stringify({ 
+        error: "Middleware crashed", 
+        message: error?.message || String(error)
+      }), 
+      { status: 500, headers: { 'content-type': 'application/json' } }
+    );
   }
 });
 
