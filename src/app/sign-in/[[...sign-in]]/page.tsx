@@ -1,5 +1,5 @@
 import { SignIn } from '@clerk/nextjs';
-import { Trophy } from 'lucide-react';
+
 import Image from 'next/image';
 
 export default function Page() {
