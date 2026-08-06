@@ -1,5 +1,20 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from 'next';
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Flex.it - Pusat Data Portofolio",
+  description: "Pelacak Kegiatan, Kompetisi & Arsip Berkas",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' }
+    ]
+  }
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
