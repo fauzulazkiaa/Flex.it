@@ -1,5 +1,4 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { createClient } from './utils/supabase/middleware';
 
 // Tentukan rute mana saja yang bisa diakses publik (tanpa login)
 const isPublicRoute = createRouteMatcher([
@@ -16,11 +15,6 @@ export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
     await auth.protect();
   }
-
-  // Refresh sesi Supabase
-  const supabaseResponse = createClient(request);
-
-  return supabaseResponse;
 });
 
 export const config = {
