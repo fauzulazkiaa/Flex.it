@@ -1,29 +1,7 @@
 import { NextResponse } from 'next/server';
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
-
-async function getOrCreateUser(userId: string) {
-  let user = await prisma.user.findUnique({
-    where: { id: userId },
-  });
-
-  if (!user) {
-    const clerkUser = await currentUser();
-    if (clerkUser) {
-      const email = clerkUser.emailAddresses[0]?.emailAddress;
-      const name = `${clerkUser.firstName || ''} ${clerkUser.lastName || ''}`.trim() || 'User';
-      user = await prisma.user.create({
-        data: {
-          id: userId,
-          email,
-          name,
-          imageUrl: clerkUser.imageUrl,
-        },
-      });
-    }
-  }
-  return user;
-}
+import { getOrCreateUser } from '@/lib/user';
 
 export async function GET() {
   try {

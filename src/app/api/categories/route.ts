@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { DEFAULT_CATEGORIES } from '@/types';
 import { auth } from '@clerk/nextjs/server';
+import { getOrCreateUser } from '@/lib/user';
 
 export async function GET() {
   try {
@@ -9,6 +10,8 @@ export async function GET() {
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    await getOrCreateUser(userId);
 
     let categories = await prisma.category.findMany({
       where: { userId },
@@ -47,6 +50,8 @@ export async function POST(req: Request) {
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    await getOrCreateUser(userId);
 
     const body = await req.json();
     const { name, color, iconName, description } = body;
